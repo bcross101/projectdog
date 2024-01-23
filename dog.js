@@ -57,7 +57,7 @@ const dogs = [
         intelligence: 'moderately intelligent'
     },
     {
-        name: 'Bulldog',
+        name: 'Other dog',
         size: 'medium',
         energyLevel: 'not very active',
         friendliness: 'very friendly',
@@ -82,20 +82,20 @@ const questions = [
 function getUserInput() {
     const userTraits = {};
 
-    for (const question of questions) {
+    for (const [index, question] of questions.entries()) {
         const answer = prompt(question);
 
-        switch (questions.indexOf(question)) {
-            case question[0]:
+        switch (index) {
+            case 0:
                 userTraits.size = answer;
                 break;
-            case question[1]:
+            case 1:
                 userTraits.activityLevel = answer;
                 break;
-            case question[2]:
+            case 2:
                 userTraits.friendliness = answer;
                 break;
-            case question[3]:
+            case 3:
                 userTraits.intelligence = answer;
         }
     }
@@ -103,6 +103,9 @@ function getUserInput() {
     return userTraits;
 
 }   
+
+
+
 
 //compare user traits to dog traits
 function findDogMatch (userTraits) {
@@ -126,6 +129,17 @@ function findDogMatch (userTraits) {
     return bestMatch;
 
 
+}
+
+
+const userTraits = getUserInput();
+
+const matchedDog = findDogMatch(userTraits);
+
+if (matchedDog) {
+    console.log(`The best matched dog for you is ${matchedDog.name}!`);
+} else {
+    console.log(`There is no dog to match your preferences!`)
 }
 
 
